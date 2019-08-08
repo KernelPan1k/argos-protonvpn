@@ -31,8 +31,14 @@ for k, v in browseServer.items():
     browseServer[k] = sorted(v, key=lambda x: x[2])[:2]
 
 print("Logout | useMarkup=false bash='sudo pvpn -d' terminal=false")
+print("Reconnect | useMarkup=false bash='sudo pvpn --reconnect' terminal=false")
+print("Connect | useMarkup=false bash='sudo pvpn -d && sudo pvpn -c' terminal=true")
 print("Fast secure core | useMarkup=false bash='sudo pvpn -d && sudo pvpn -sc' terminal=false")
-print("Servers list")
+print("Random connect | useMarkup=false bash='sudo pvpn -d && sudo pvpn -r' terminal=false")
+print("Connect to the fastest | useMarkup=false bash='sudo pvpn -d && sudo pvpn -f' terminal=false")
+print("Connect to the fastest P2P | useMarkup=false bash='sudo pvpn -d && sudo pvpn -p2p' terminal=false")
+print("Connect to the fastest TOR | useMarkup=false bash='sudo pvpn -d && sudo pvpn -tor' terminal=false")
+print("All fastest Secure Core list")
 
 for v in browseServer.values():
     if len(v):
