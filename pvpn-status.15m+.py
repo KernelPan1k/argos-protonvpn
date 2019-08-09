@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-import subprocess
 import json
+import subprocess
 
 output = subprocess.check_output(["sudo", "pvpn", "--status"])
 output = output or ""
@@ -14,16 +14,21 @@ def get_country_by_code(code):
     return next(cntry for cntry in available_countries if cntry["code"] == code.upper())
 
 
+enter = None
+
 for o in output:
     if '[ProtonVPN Status]: Not Running' == o:
-        print("| iconName=network-error")
+        enter = "|iconName=user-offline"
         break
     elif 'Exit Country' in o:
         country_code = o.split(': ')[1].strip()
         if country_code:
             country = get_country_by_code(country_code)
             if country:
-                print("| image='%s'" % country['image'])
+                enter = "| image='%s'" % country['image']
                 break
 
-print("| iconName=network-error")
+if not enter:
+    enter = "| iconName=user-indeterminate"
+
+print(enter)
